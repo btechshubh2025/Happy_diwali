@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diwali Wishes | From Shubh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#ffd477;--cream:#fff3d8;--muted:#d6c4b5;--dark:#090611}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 50% 35%,#401a2a 0%,#180b1d 42%,#07050d 100%);color:var(--cream);font-family:Poppins,sans-serif}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.bg-stars{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(2px 2px at 12% 20%,#fff4cf 50%,transparent),radial-gradient(1px 1px at 78% 15%,#ffd477 50%,transparent),radial-gradient(2px 2px at 85% 75%,#fff 50%,transparent),radial-gradient(1px 1px at 28% 82%,#ffd477 50%,transparent);opacity:.55}
+nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;width:min(1100px,92%);margin:auto;padding:24px 0}
+.logo{font-size:.8rem;letter-spacing:3px;color:var(--gold);font-weight:600}.nav-caption{font-size:.7rem;color:#b9a6b9;letter-spacing:1.5px}
+main{position:relative;z-index:2}
+.entry-screen,.wish-screen{min-height:calc(100vh - 75px);display:flex;align-items:center;justify-content:center;padding:30px 18px 65px}
+.entry-card{width:min(520px,100%);padding:44px 35px;text-align:center;background:linear-gradient(145deg,#ffffff0d,#ffffff04);border:1px solid #f4c86a38;border-radius:28px;box-shadow:0 20px 80px #0005;backdrop-filter:blur(12px);animation:cardIn .9s ease both}
+.kicker{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+h1,h2{font-family:"Cormorant Garamond",serif;font-weight:600}
+.entry-card h1{font-size:clamp(3.5rem,10vw,5.2rem);line-height:.95;color:#ffe6a5;text-shadow:0 0 30px #f7bd4b24}
+.subtitle{color:var(--muted);font-size:.9rem;line-height:1.8;margin:20px auto 26px;max-width:390px}
+input{width:100%;padding:16px 18px;border:1px solid #e7bd6b60;border-radius:14px;background:#090611b8;color:#fff3d8;font:inherit;outline:none;text-align:center;transition:.25s}
+input:focus{border-color:var(--gold);box-shadow:0 0 0 4px #ffd47716}
+input::placeholder{color:#9c899e}
+button{border:0;border-radius:999px;padding:14px 25px;cursor:pointer;font:500 .85rem Poppins,sans-serif;transition:transform .2s,box-shadow .2s}
+button:hover{transform:translateY(-3px)}
+.primary{background:linear-gradient(135deg,#ffe9a9,#d99a32);color:#2b1608;box-shadow:0 8px 28px #d99b3530}
+.entry-card .primary{width:100%;margin-top:14px}
+.from-note{font-size:.75rem;color:#9d899c;margin-top:20px}
+.hidden{display:none!important}
+.wish-layout{width:min(1000px,100%);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px}
+.wish-copy{text-align:left;animation:fadeUp .8s ease both}
+.wish-copy .kicker{margin-bottom:20px}
+.wish-copy h2{font-size:clamp(3.8rem,8vw,6.4rem);line-height:.88;color:#ffe5a0;text-shadow:0 0 45px #f7c96b20}
+.recipient{font-size:clamp(1.5rem,4vw,2.4rem);color:#fff4d6;margin:18px 0 14px}
+.recipient span{color:var(--gold);font-family:"Cormorant Garamond",serif;font-weight:700}
+.wish-text{color:#d9c8b7;line-height:1.9;font-size:.95rem;max-width:470px}
+.signature{margin-top:22px;color:#f7d48c}
+.signature strong{color:#fff0c5}
+.controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.secondary{border:1px solid #e4bb6c60;color:#f9e7c4;background:#ffffff06}
+.art{min-height:430px;display:grid;place-items:center;position:relative;animation:fadeUp 1s .15s both}
+.ring{position:absolute;width:min(350px,80vw);aspect-ratio:1;border:1px solid #eac46b36;border-radius:50%;box-shadow:0 0 80px #f4a83d0d inset;animation:rotate 28s linear infinite}
+.ring:before,.ring:after{content:"";position:absolute;inset:25px;border:1px dashed #eac46b42;border-radius:50%}.ring:after{inset:55px;border-style:solid}
+.diya{position:relative;width:250px;height:260px;display:flex;justify-content:center;align-items:center}
+.flame{position:absolute;top:34px;width:55px;height:100px;border-radius:55% 45% 50% 50%/70% 70% 30% 30%;background:radial-gradient(ellipse at 50% 75%,#fffbd2 0 10%,#ffd54f 28%,#ff8c27 58%,#ff4b1d 76%,transparent 77%);filter:drop-shadow(0 0 25px #ff9e32);animation:flicker 1.4s ease-in-out infinite alternate;z-index:2}
+.flame:after{content:"";position:absolute;width:19px;height:45px;top:36px;left:18px;background:#fff8cc;border-radius:50%;filter:blur(3px)}
+.bowl{position:absolute;bottom:42px;width:205px;height:80px;border-radius:10% 10% 50% 50%/20% 20% 80% 80%;background:linear-gradient(#f8c35c,#b94f1d 58%,#682319);border:1px solid #ffe19a;box-shadow:inset 0 8px 15px #ffe6a45c,0 15px 35px #ff8b2930}
+.bowl:before{content:"";position:absolute;top:-8px;left:-7px;width:217px;height:24px;border-radius:50%;background:linear-gradient(90deg,#a3461e,#ffe5a2,#b65320)}
+.glow{position:absolute;bottom:8px;width:180px;height:35px;border-radius:50%;background:#ff9c2c;filter:blur(30px);opacity:.7}
+.float{position:absolute;color:#f3c96f;font-size:1.7rem;animation:float 4s ease-in-out infinite}.f1{top:15%;left:12%}.f2{top:22%;right:10%;animation-delay:1s}.f3{bottom:18%;left:15%;animation-delay:1.5s}.f4{bottom:15%;right:12%;animation-delay:.6s}
+.wish-screen{animation:fadeUp .6s ease both}
+footer{position:relative;z-index:2;text-align:center;padding:0 15px 25px;color:#8e7d91;font-size:.7rem;letter-spacing:1px}
+@keyframes flicker{from{transform:rotate(-3deg) scale(.96)}to{transform:rotate(3deg) scale(1.06)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-13px) rotate(9deg)}}
+@keyframes rotate{to{transform:rotate(360deg)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(25px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@media(max-width:760px){.nav-caption{display:none}.wish-layout{grid-template-columns:1fr;text-align:center;gap:0}.wish-copy{text-align:center;order:2}.art{min-height:340px;order:1}.wish-copy h2{font-size:clamp(3.8rem,15vw,5.4rem)}.wish-text{margin:auto}.controls{justify-content:center}.entry-card{padding:35px 22px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="bg-stars"></div><canvas id="fx"></canvas>
+<nav><div class="logo">✦ SHUBH WISHES</div><div class="nav-caption">A FESTIVAL OF LIGHT · LOVE · NEW BEGINNINGS</div></nav>
+
+<main>
+<section class="entry-screen" id="entry">
+  <div class="entry-card">
+    <div class="kicker">A little Diwali magic ✨</div>
+    <h1>Happy<br>Diwali</h1>
+    <p class="subtitle">Enter your name and unlock a special Diwali wish made just for you.</p>
+    <form id="nameForm">
+      <input id="nameInput" type="text" maxlength="35" placeholder="Enter your name..." autocomplete="name" required>
+      <button class="primary" type="submit">Get My Diwali Wish ✨</button>
+    </form>
+    <p class="from-note">A warm festive greeting from Shubh 🪔</p>
+  </div>
+</section>
+
+<section class="wish-screen hidden" id="wish">
+  <div class="wish-layout">
+    <div class="wish-copy">
+      <div class="kicker">A special wish for you</div>
+      <h2>Happy<br>Diwali</h2>
+      <div class="recipient">Dear <span id="recipientName">Friend</span> ✨</div>
+      <p class="wish-text" id="wishText">May this Diwali fill your life with happiness, peace, prosperity and countless beautiful moments. May every diya bring new hope, every sparkle bring joy, and every day ahead shine brighter than before.</p>
+      <p class="signature">With love & light,<br><strong>Shubh</strong></p>
+      <div class="controls">
+        <button class="primary" id="celebrate">Celebrate 🎆</button>
+        <button class="secondary" id="share">Share this wish ↗</button>
+        <button class="secondary" id="changeName">Change name</button>
+      </div>
+    </div>
+    <div class="art">
+      <div class="ring"></div><span class="float f1">✦</span><span class="float f2">✧</span><span class="float f3">✧</span><span class="float f4">✦</span>
+      <div class="diya"><div class="flame"></div><div class="bowl"></div><div class="glow"></div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>MADE WITH ✨ BY SHUBH · HAPPY DIWALI</footer>
+
+<script>
+const entry=document.getElementById('entry'), wish=document.getElementById('wish');
+const input=document.getElementById('nameInput'), recipient=document.getElementById('recipientName');
+const wishText=document.getElementById('wishText');
+const canvas=document.getElementById('fx'), ctx=canvas.getContext('2d');
+let particles=[];
+function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+resize();addEventListener('resize',resize);
+function burst(x,y){
+const colors=['#ffd166','#ff8c42','#fff1b8','#f76c5e','#d7a6ff','#ffffff'];
+for(let i=0;i<90;i++){let a=Math.random()*Math.PI*2,s=Math.random()*4.5+1;
+particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1,color:colors[Math.floor(Math.random()*colors.length)],size:Math.random()*3+1})}
+}
+function animate(){ctx.clearRect(0,0,innerWidth,innerHeight);particles=particles.filter(p=>p.life>0);particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.life-=.012;ctx.globalAlpha=p.life;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;requestAnimationFrame(animate)}
+animate();
+function launch(){for(let i=0;i<3;i++)setTimeout(()=>burst(innerWidth*(.2+Math.random()*.6),innerHeight*(.15+Math.random()*.45)),i*280)}
+document.getElementById('nameForm').addEventListener('submit',e=>{
+e.preventDefault();let name=input.value.trim();if(!name)return;
+recipient.textContent=name;entry.classList.add('hidden');wish.classList.remove('hidden');
+wishText.textContent=`May this Diwali, ${name}, fill your life with happiness, peace, prosperity and countless beautiful moments. May every diya bring new hope, every sparkle bring joy, and every day ahead shine brighter than before.`;
+launch();window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('celebrate').addEventListener('click',launch);
+document.getElementById('changeName').addEventListener('click',()=>{wish.classList.add('hidden');entry.classList.remove('hidden');input.focus();window.scrollTo({top:0,behavior:'smooth'})});
+document.getElementById('share').addEventListener('click',async()=>{
+const name=recipient.textContent;
+const message=`🪔 Happy Diwali, ${name}! May this Diwali fill your life with happiness, peace, prosperity and countless beautiful moments. With love & light, Shubh ✨`;
+try{if(navigator.share)await navigator.share({title:`Diwali wishes for ${name}`,text:message});else if(navigator.clipboard){await navigator.clipboard.writeText(message);alert('Wish copied! Share it with your loved ones.')}else alert(message)}catch(err){}
+});
+setTimeout(()=>burst(innerWidth*.8,innerHeight*.25),900);
+</script>
+</body>
+</html>
